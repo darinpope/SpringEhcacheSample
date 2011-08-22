@@ -2,14 +2,12 @@ package com.darinpope.dao.impl;
 
 import com.darinpope.dao.DataCenterHealthDao;
 import com.googlecode.ehcache.annotations.Cacheable;
-import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheException;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
-import net.sf.ehcache.CacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.ehcache.EhCacheFactoryBean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository("dataCenterHealthDao")
@@ -32,19 +30,19 @@ public class DataCenterHealthDaoImpl implements DataCenterHealthDao {
   }
 
   public void setLocalActive() {
-    setActive("localDataCenterStatus","true");
+    setStatus("localDataCenterStatus", "true");
   }
 
   public void setRemoteActive() {
-    setActive("remoteDataCenterStatus","true");
+    setStatus("remoteDataCenterStatus", "true");
   }
 
   public void setLocalInactive() {
-    setActive("localDataCenterStatus","false");
+    setStatus("localDataCenterStatus", "false");
   }
 
   public void setRemoteInactive() {
-    setActive("remoteDataCenterStatus","false");
+    setStatus("remoteDataCenterStatus", "false");
   }
 
   @Cacheable(cacheName="DataCenterHealthCache")
@@ -52,8 +50,11 @@ public class DataCenterHealthDaoImpl implements DataCenterHealthDao {
     return false;
   }
 
-  private void setActive(String key, String status) {
+  private void setStatus(String key, String status) {
     Element element = new Element(key,Boolean.valueOf(status));
-    dataCenterHealthCache.put(element);
+    try {
+      dataCenterHealthCache.put(element);
+    } catch (CacheException e) {
+    }
   }
 }
