@@ -1,0 +1,33 @@
+<ehcache name="ReferenceDataCacheManager">    
+    <terracottaConfig url="${localTerracottaConfigUrl}" rejoin="true" />
+    <cache name="CountryCache"
+        eternal="false"
+        maxElementsInMemory="5000"
+        maxElementsOnDisk="125000">
+        <terracotta consistency="eventual" concurrency="256">
+            <nonstop enabled="true" immediateTimeout="true" timeoutMillis="5000">
+                <timeoutBehavior type="localReads" />
+            </nonstop>
+        </terracotta>
+    </cache>    
+    <cache name="RegionCache"
+        eternal="false"
+        maxElementsInMemory="5000"
+        maxElementsOnDisk="125000">
+        <terracotta consistency="eventual" concurrency="256">
+            <nonstop enabled="true" immediateTimeout="true" timeoutMillis="5000">
+                <timeoutBehavior type="localReads" />
+            </nonstop>
+        </terracotta>
+    </cache>
+    <cache name="DataCenterHealthCache"
+        eternal="false"
+        maxElementsInMemory="100"
+        maxElementsOnDisk="1000">
+        <terracotta consistency="eventual" concurrency="256">
+            <nonstop enabled="true" immediateTimeout="true" timeoutMillis="5000">
+                <timeoutBehavior type="localReads" />
+            </nonstop>
+        </terracotta>
+    </cache>
+</ehcache>

@@ -1,0 +1,13 @@
+<ehcache name="RemoteCacheManager">
+    <terracottaConfig url="${remoteTerracottaConfigUrl}" rejoin="true" />
+    <cache name="remoteAccountCache"
+        eternal="false"
+        maxElementsInMemory="12000"
+        maxElementsOnDisk="25000">        
+        <terracotta consistency="eventual" concurrency="256">
+            <nonstop enabled="true" immediateTimeout="true" timeoutMillis="5000">    
+                <timeoutBehavior type="exception" />
+            </nonstop>        
+        </terracotta>    
+    </cache>    
+</ehcache>
