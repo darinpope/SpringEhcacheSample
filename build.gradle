@@ -14,7 +14,7 @@ repositories {
 }
 
 test {
-  jvmArgs = ["-DlocalTerracottaConfigUrl=192.168.0.105:9510","-DremoteTerracottaConfigUrl=192.168.0.105:9610","-Dcom.tc.productkey.path=/Users/dpope/Tools/Terracotta/terracotta-license.key"]
+  jvmArgs = ["-DlocalTerracottaConfigUrl=localhost:9510","-DremoteTerracottaConfigUrl=localhost:9610","-Dcom.tc.productkey.path=/Users/dpope/Tools/Terracotta/terracotta-license.key"]
 }
 
 dependencies {
