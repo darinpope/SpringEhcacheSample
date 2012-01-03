@@ -3,7 +3,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
-springVersion = "3.0.6.RELEASE"
+springVersion = "3.0.7.RELEASE"
 slf4jVersion = "1.6.1"
 ehcacheVersion = "2.5.0"
 terracottaCommonVersion = "4.0.0"
@@ -12,12 +12,12 @@ repositories {
   mavenLocal()
   mavenCentral()
   maven {
-      url "http://repo.terracotta.org/maven2"
+      url "http://www.terracotta.org/download/reflector/releases"
   }
 }
 
 test {
-  jvmArgs = ["-DlocalTerracottaConfigUrl=localhost:9510","-DremoteTerracottaConfigUrl=localhost:9610","-Dcom.tc.productkey.path=/Users/dpope/Tools/Terracotta/terracotta-license.key"]
+  jvmArgs = ["-DlocalTerracottaConfigUrl=localhost:9510","-DremoteTerracottaConfigUrl=localhost:9610","-Dcom.tc.productkey.path=/Users/dpope/tools/terracotta/terracotta-license.key"]
 }
 
 dependencies {
@@ -43,5 +43,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.0-milestone-5'
+  gradleVersion = '1.0-milestone-6'
 }

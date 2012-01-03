@@ -2,3 +2,7 @@
 *.ipr
 *.iws
 .gradle
+.classpath
+.settings
+.project
+build
